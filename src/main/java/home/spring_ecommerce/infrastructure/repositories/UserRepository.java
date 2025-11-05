@@ -1,6 +1,6 @@
 package home.spring_ecommerce.infrastructure.repositories;
 
-import home.spring_ecommerce.domain.entities.UserEntity;
+import home.spring_ecommerce.domain.entities.emp.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.Optional;

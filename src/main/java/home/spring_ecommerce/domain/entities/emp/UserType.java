@@ -1,4 +1,4 @@
-package home.spring_ecommerce.domain.entities;
+package home.spring_ecommerce.domain.entities.emp;
 
 import jakarta.persistence.*;
 

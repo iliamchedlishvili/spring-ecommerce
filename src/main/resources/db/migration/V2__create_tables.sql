@@ -1,3 +1,11 @@
+
+CREATE TABLE log.error_logs (
+    id SERIAL PRIMARY KEY,
+    error_text VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    create_date TIMESTAMP WITHOUT TIME ZONE NOT NULL
+);
+
 CREATE TABLE emp.users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
