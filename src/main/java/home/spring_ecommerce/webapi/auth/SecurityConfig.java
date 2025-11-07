@@ -56,6 +56,10 @@ public class SecurityConfig {
                 //.httpBasic(Customizer.withDefaults())
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
+       /* String plainPassword = "1234";
+        String hashedPassword = passwordEncoder().encode(plainPassword);
+        System.out.println("Hashed Password for Flyway: " + hashedPassword);*/
+
         return http.build();
     }
 }
