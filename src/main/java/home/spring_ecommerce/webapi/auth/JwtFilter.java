@@ -1,5 +1,6 @@
 package home.spring_ecommerce.webapi.auth;
 
+import home.spring_ecommerce.infrastructure.redis.RedisService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,6 +24,9 @@ public class JwtFilter extends OncePerRequestFilter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private RedisService redisService;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
@@ -34,7 +38,8 @@ public class JwtFilter extends OncePerRequestFilter {
             String username = jwtUtil.extractUsername(token);
 
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+                UserDetails userDetails = redisService.getData(token,UserDetails.class);
+                //userDetailsService.loadUserByUsername(username);
 
                 if (jwtUtil.validateToken(token)) {
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(

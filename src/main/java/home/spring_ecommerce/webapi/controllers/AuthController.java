@@ -1,6 +1,8 @@
 package home.spring_ecommerce.webapi.controllers;
 
 import home.spring_ecommerce.application.dtos.AuthDto;
+import home.spring_ecommerce.domain.entities.emp.UserEntity;
+import home.spring_ecommerce.infrastructure.redis.RedisService;
 import home.spring_ecommerce.webapi.auth.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,7 +11,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Collections;
 
 @RestController
@@ -18,6 +23,12 @@ public class AuthController {
 
     @Autowired
     private AuthenticationManager authManager;
+
+    @Autowired
+    private RedisService redisService;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -30,6 +41,10 @@ public class AuthController {
             );
 
             String token = jwtUtil.generateToken(request.getUsername());
+
+            UserEntity userDetails = (UserEntity) authentication.getPrincipal();
+            redisService.saveData(token, userDetails);
+
             return ResponseEntity.ok(Collections.singletonMap("token", token));
 
         } catch (AuthenticationException e) {
@@ -38,7 +53,7 @@ public class AuthController {
     }
 
     @GetMapping("/welcome")
-    public ResponseEntity<?> welcome(){
+    public ResponseEntity<?> welcome() {
         return ResponseEntity.status(HttpStatus.OK).body("Welcome");
     }
 }
