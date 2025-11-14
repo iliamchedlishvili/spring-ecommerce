@@ -41,8 +41,8 @@ public class AuthController {
             );
 
             String token = jwtUtil.generateToken(request.getUsername());
-
-            UserEntity userDetails = (UserEntity) authentication.getPrincipal();
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            //UserEntity userDetails = (UserEntity) authentication.getPrincipal();
             redisService.saveData(token, userDetails);
 
             return ResponseEntity.ok(Collections.singletonMap("token", token));
