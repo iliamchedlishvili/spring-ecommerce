@@ -1,7 +1,6 @@
 package home.spring_ecommerce.webapi.controllers;
 
 import home.spring_ecommerce.application.dtos.AuthDto;
-import home.spring_ecommerce.domain.entities.emp.UserEntity;
 import home.spring_ecommerce.infrastructure.redis.RedisService;
 import home.spring_ecommerce.webapi.auth.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Collections;
 
 @RestController
@@ -50,10 +48,5 @@ public class AuthController {
         } catch (AuthenticationException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
-    }
-
-    @GetMapping("/welcome")
-    public ResponseEntity<?> welcome() {
-        return ResponseEntity.status(HttpStatus.OK).body("Welcome");
     }
 }
