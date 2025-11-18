@@ -1,6 +1,7 @@
 package home.spring_ecommerce.webapi.controllers;
 
 import home.spring_ecommerce.application.dtos.AuthDto;
+import home.spring_ecommerce.application.dtos.CustomUserDetails;
 import home.spring_ecommerce.infrastructure.redis.RedisService;
 import home.spring_ecommerce.webapi.auth.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,13 +41,15 @@ public class AuthController {
 
             String token = jwtUtil.generateToken(request.getUsername());
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            //UserEntity userDetails = (UserEntity) authentication.getPrincipal();
-            redisService.saveData(token, userDetails);
+
+            if (userDetails instanceof CustomUserDetails customUserDetails) {
+                redisService.saveData(token, customUserDetails);
+            }
 
             return ResponseEntity.ok(Collections.singletonMap("token", token));
 
         } catch (AuthenticationException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
         }
     }
 }

@@ -12,6 +12,10 @@ public class UserEntity {
     @Column(nullable = false)
     private String username;
 
+    // @JoinColumn specifies the foreign key column name in the 'users' table
+    @JoinColumn(name = "user_type_id", nullable = false)
+    private UserType userType;
+
     public Long getId() {
         return id;
     }

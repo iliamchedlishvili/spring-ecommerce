@@ -2,6 +2,9 @@ package home.spring_ecommerce.domain.entities.emp;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "user_types", schema = "emp")
 public class UserType {
@@ -30,4 +33,12 @@ public class UserType {
     public void setName(String name) {
         this.name = name;
     }
+
+    @OneToMany(
+            mappedBy = "userType", // Name of the field in the 'many' side (User)
+            cascade = CascadeType.ALL, // Cascade operations (e.g., delete UserType, delete all Users)
+            fetch = FetchType.LAZY, // Only load Users when explicitly requested (best practice)
+            orphanRemoval = true // Remove child Users if they are disassociated from the parent UserType
+    )
+    private Set<UserEntity> users = new HashSet<>();
 }

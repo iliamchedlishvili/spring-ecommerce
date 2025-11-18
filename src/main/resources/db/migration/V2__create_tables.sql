@@ -23,3 +23,12 @@ CREATE TABLE emp.employees (
     lastname VARCHAR(255),
     mobile VARCHAR(255)
 );
+
+ALTER TABLE emp.users
+ADD COLUMN user_type_id BIGINT;
+
+ALTER TABLE emp.users
+ADD CONSTRAINT fk_user_type
+    FOREIGN KEY (user_type_id)
+    REFERENCES emp.user_types (id)
+    ON DELETE RESTRICT;

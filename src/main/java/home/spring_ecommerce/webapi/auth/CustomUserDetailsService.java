@@ -1,5 +1,6 @@
 package home.spring_ecommerce.webapi.auth;
 
+import home.spring_ecommerce.application.dtos.CustomUserDetails;
 import home.spring_ecommerce.domain.entities.emp.UserEntity;
 import home.spring_ecommerce.infrastructure.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,12 @@ public class CustomUserDetailsService implements UserDetailsService {
         UserEntity user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 
-        return User.builder()
+        CustomUserDetails userDetails = new CustomUserDetails(user);
+
+        return  userDetails;
+        /*return User.builder()
                 .username(user.getUsername())
                 .password(user.getPassword())
-                //.roles(user.getRole()) // or convert role string properly
-                .build();
+                .build();*/
     }
 }
