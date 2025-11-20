@@ -1,7 +1,6 @@
 package home.spring_ecommerce.domain.entities.emp;
 
 import jakarta.persistence.*;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,6 +10,9 @@ public class UserType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    public UserType() {
+    }
 
     private String name;
 
@@ -32,6 +34,10 @@ public class UserType {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public UserType(Long id) {
+        this.id = id;
     }
 
     @OneToMany(

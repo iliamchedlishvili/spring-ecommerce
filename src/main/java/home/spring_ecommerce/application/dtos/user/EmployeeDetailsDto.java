@@ -1,31 +1,10 @@
-package home.spring_ecommerce.domain.entities.emp;
+package home.spring_ecommerce.application.dtos.user;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "employees", schema = "emp")
-public class Employee {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class EmployeeDetailsDto {
 
     private String firstname;
-
     private String lastname;
-
     private String mobile;
-
-    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private UserEntity user;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getFirstname() {
         return firstname;

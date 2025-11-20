@@ -1,8 +1,9 @@
-package home.spring_ecommerce.application.dtos;
+package home.spring_ecommerce.application.dtos.user;
 
 import home.spring_ecommerce.domain.entities.emp.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -11,6 +12,12 @@ public class CustomUserDetails implements UserDetails {
     private Long id;
     private final String username;
     private final String password;
+
+    public CustomUserDetails() {
+
+        this.username = "";
+        this.password = "";
+    }
 
     public CustomUserDetails(UserEntity user) {
         this.id = user.getId();

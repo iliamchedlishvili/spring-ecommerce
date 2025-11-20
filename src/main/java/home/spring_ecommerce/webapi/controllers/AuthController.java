@@ -1,7 +1,7 @@
 package home.spring_ecommerce.webapi.controllers;
 
-import home.spring_ecommerce.application.dtos.AuthDto;
-import home.spring_ecommerce.application.dtos.CustomUserDetails;
+import home.spring_ecommerce.application.dtos.user.AuthDto;
+import home.spring_ecommerce.application.dtos.user.CustomUserDetails;
 import home.spring_ecommerce.infrastructure.redis.RedisService;
 import home.spring_ecommerce.webapi.auth.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;

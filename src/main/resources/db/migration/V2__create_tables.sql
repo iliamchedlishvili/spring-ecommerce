@@ -6,12 +6,6 @@ CREATE TABLE log.error_logs (
     create_date TIMESTAMP WITHOUT TIME ZONE NOT NULL
 );
 
-CREATE TABLE emp.users (
-    id SERIAL PRIMARY KEY,
-    username VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL
-);
-
 CREATE TABLE emp.user_types (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255)
@@ -24,11 +18,20 @@ CREATE TABLE emp.employees (
     mobile VARCHAR(255)
 );
 
-ALTER TABLE emp.users
-ADD COLUMN user_type_id BIGINT;
+CREATE TABLE emp.users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    user_type_id BIGINT NOT NULL,
+    employee_id BIGINT,
 
-ALTER TABLE emp.users
-ADD CONSTRAINT fk_user_type
-    FOREIGN KEY (user_type_id)
-    REFERENCES emp.user_types (id)
-    ON DELETE RESTRICT;
+    CONSTRAINT fk_users_user_type_id
+        FOREIGN KEY (user_type_id)
+        REFERENCES emp.user_types (id)
+        ON DELETE RESTRICT,
+
+    CONSTRAINT fk_users_employee_id
+        FOREIGN KEY (employee_id)
+        REFERENCES emp.employees (id)
+        ON DELETE RESTRICT
+);

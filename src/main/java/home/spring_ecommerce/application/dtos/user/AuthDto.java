@@ -1,4 +1,4 @@
-package home.spring_ecommerce.application.dtos;
+package home.spring_ecommerce.application.dtos.user;
 
 public class AuthDto {
     private String username;
