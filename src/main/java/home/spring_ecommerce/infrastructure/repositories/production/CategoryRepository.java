@@ -13,8 +13,8 @@ public interface CategoryRepository extends JpaRepository<ProductCategory,Long> 
 
     @Modifying
     @Transactional
-    @Query("UPDATE ProductCategory c SET c.name = :#{#category.name} WHERE c.id = :#{#category.id}")
-    void updateCategory(@Param("category") ProductCategory category);
+    @Query("UPDATE ProductCategory c SET c.name = :name WHERE c.id = :id")
+    void updateCategory(@Param("id") int id, @Param("name") String name);
 
     @Query("SELECT new home.spring_ecommerce.domain.views.CategoryView(c.id, c.name) " +
             "FROM ProductCategory c")

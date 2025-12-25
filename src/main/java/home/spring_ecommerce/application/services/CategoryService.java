@@ -28,7 +28,7 @@ public class CategoryService {
 
     public void updateCategory(UpdateCategoryDto updateCategoryDto) {
         ProductCategory productCategory = modelMapper.map(updateCategoryDto, ProductCategory.class);
-        categoryRepository.updateCategory(productCategory);
+        categoryRepository.updateCategory(productCategory.getId(), productCategory.getName());
     }
 
     public List<CategoryView> getAllCategories() {
