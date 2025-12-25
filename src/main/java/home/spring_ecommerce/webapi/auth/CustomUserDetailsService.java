@@ -2,7 +2,7 @@ package home.spring_ecommerce.webapi.auth;
 
 import home.spring_ecommerce.application.dtos.user.CustomUserDetails;
 import home.spring_ecommerce.domain.entities.emp.UserEntity;
-import home.spring_ecommerce.infrastructure.repositories.UserRepository;
+import home.spring_ecommerce.infrastructure.repositories.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

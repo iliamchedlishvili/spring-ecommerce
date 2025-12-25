@@ -1,4 +1,4 @@
-package home.spring_ecommerce.infrastructure.repositories;
+package home.spring_ecommerce.infrastructure.repositories.user;
 
 import home.spring_ecommerce.application.dtos.user.UserListViewDto;
 import home.spring_ecommerce.domain.entities.emp.UserEntity;
