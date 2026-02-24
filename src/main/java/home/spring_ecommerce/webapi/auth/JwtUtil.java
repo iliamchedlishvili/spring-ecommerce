@@ -7,6 +7,7 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
 import java.util.Date;
 
+
 @Component
 public class JwtUtil {
     private final String SECRET = "G9L3X8bG4r5YpKW8vZ9YOQ1KD1L3m8zjOj4VJTXE0Oo="; // Use env/secure config
