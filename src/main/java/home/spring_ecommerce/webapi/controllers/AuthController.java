@@ -20,7 +20,6 @@ import java.util.Collections;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-
     @Autowired
     private AuthenticationManager authManager;
 
