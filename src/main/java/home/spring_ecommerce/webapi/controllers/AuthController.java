@@ -32,7 +32,6 @@ public class AuthController {
     @Autowired
     private JwtUtil jwtUtil;
 
-
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthDto request) {
         try {
